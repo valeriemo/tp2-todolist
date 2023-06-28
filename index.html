@@ -12,21 +12,70 @@
     
     <header>
         <h1>TP2</h1>
-        <p>Un gestionnaire de tâches (to-do-list) en POO</p>
+        <small>Un gestionnaire de tâches (to-do-list) en POO.</small>
     </header>
 
     <main>
-
+        <!-- Section 1 -->
         <section>
+
+            <h2>Ajouter une tâche</h2>
+
+            <div data-js-control-wrapper >
+                <label class="rangee">
+                    Nouvelle tâche: <input type="text" name="tache">
+                </label>
+                <small data-js-error></small>
+            </div>
+
+            <div data-js-control-wrapper>
+                <label class="rangee">
+                    Description: <input type="text" name="description">
+                </label>
+                <small data-js-error></small>
+            </div>
+
+            <div data-js-control-wrapper class="rangee">
+                <label class="rangee">
+                    Haute: 
+                    <input type="radio" name="priorite" data-js-radio ="haute">
+                </label>
+                <label class="rangee">
+                    Moyenne: 
+                    <input type="radio" name="priorite" data-js-radio ="moyenne">
+                </label>
+                <label class="rangee">
+                    Basse: 
+                    <input type="radio" name="priorite" data-js-radio ="basse">
+                </label>
+                <small data-js-error></small>
+            </div>
+
+            <button data-js-bouton = "ajouter">Ajouter</button>
 
         </section>
 
-        <section>
-            
+        <!-- Section 2 -->
+        <section class="boite">
+
+            <div data-js-control-wrapper>
+                <h2>Liste de tâches</h2>
+
+            </div>
+
+            <div data-js-control-wrapper class="rangee">
+                <button data-js-bouton="tri-alphabetique">Trier par ordre alphabétique</button>
+                <button data-js-bouton="tri-importance">Trier par importance</button>
+            </div>
+
         </section>
 
-        <section>
-            
+        <!-- Section 3 -->
+        <section class="boite">
+            <div data-js-control-wrapper>
+                <h2>Détail d'une tâche</h2>
+
+            </div>
         </section>
 
     </main>
