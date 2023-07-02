@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tp 2 : Valérie Moreau</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/aTaches.js"></script>
+    <script src="scripts/form.js"></script> 
     <script src="scripts/main.js"></script>
 </head>
 <body>
@@ -17,36 +19,35 @@
 
     <main>
         <!-- Section 1 -->
-        <section>
+        <section data-js-form>
 
             <h2>Ajouter une tâche</h2>
 
-            <div data-js-control-wrapper >
+            <div data-js-control-wrapper required>
                 <label class="rangee">
-                    Nouvelle tâche: <input type="text" name="tache">
+                    Nouvelle tâche: <input type="text" name="Tâche" required>
                 </label>
                 <small data-js-error></small>
             </div>
 
             <div data-js-control-wrapper>
                 <label class="rangee">
-                    Description: <input type="text" name="description">
+                    Description: <input type="text" name="Description">
                 </label>
-                <small data-js-error></small>
             </div>
 
-            <div data-js-control-wrapper class="rangee">
+            <div data-js-control-wrapper = 'radio' class="rangee">
                 <label class="rangee">
                     Haute: 
-                    <input type="radio" name="priorite" data-js-radio ="haute">
+                    <input type="radio" name="Importance" data-js-radio ="haute">
                 </label>
                 <label class="rangee">
                     Moyenne: 
-                    <input type="radio" name="priorite" data-js-radio ="moyenne">
+                    <input type="radio" name="Importance" data-js-radio ="moyenne">
                 </label>
                 <label class="rangee">
                     Basse: 
-                    <input type="radio" name="priorite" data-js-radio ="basse">
+                    <input type="radio" name="Importance" data-js-radio ="basse">
                 </label>
                 <small data-js-error></small>
             </div>
