@@ -1,3 +1,10 @@
+<!-- 
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+╔════════════════════════════════════════════════════════════════════════════════╗ *
+║ https://github.com/valeriemo/tp2-todolist.git                                  ║ *
+╚════════════════════════════════════════════════════════════════════════════════╝ *
+  * * * * * * * ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +14,10 @@
     <title>Tp 2 : Valérie Moreau</title>
     <link rel="stylesheet" href="styles/styles.css">
     <script src="scripts/aTaches.js"></script>
-    <script src="scripts/form.js"></script> 
-    <script src="scripts/main.js"></script>
+    <script src="scripts/Tache.js"></script>
+    <script src="scripts/TrierTaches.js"></script>
+    <script src="scripts/Form.js"></script> 
+    <script src="scripts/Main.js"></script>
 </head>
 <body>
     
@@ -17,65 +26,58 @@
         <small>Un gestionnaire de tâches (to-do-list) en POO.</small>
     </header>
 
-    <main>
+    <main data-js-form>
         <!-- Section 1 -->
-        <section data-js-form>
 
+        <section>
             <h2>Ajouter une tâche</h2>
+            <form>
+                <div data-js-control-wrapper required>
+                    <label class="rangee">
+                        Nouvelle tâche: <input type="text" name="tache" required>
+                    </label>
+                </div>
 
-            <div data-js-control-wrapper required>
-                <label class="rangee">
-                    Nouvelle tâche: <input type="text" name="Tâche" required>
-                </label>
-                <small data-js-error></small>
-            </div>
+                <div data-js-control-wrapper>
+                    <label class="rangee">
+                        Description: <input type="text" name="description">
+                    </label>
+                </div>
 
-            <div data-js-control-wrapper>
-                <label class="rangee">
-                    Description: <input type="text" name="Description">
-                </label>
-            </div>
-
-            <div data-js-control-wrapper = 'radio' class="rangee">
-                <label class="rangee">
-                    Haute: 
-                    <input type="radio" name="Importance" data-js-radio ="haute">
-                </label>
-                <label class="rangee">
-                    Moyenne: 
-                    <input type="radio" name="Importance" data-js-radio ="moyenne">
-                </label>
-                <label class="rangee">
-                    Basse: 
-                    <input type="radio" name="Importance" data-js-radio ="basse">
-                </label>
-                <small data-js-error></small>
-            </div>
-
-            <button data-js-bouton = "ajouter">Ajouter</button>
-
+                <div data-js-control-wrapper="radio" class="rangee">
+                    <label class="rangee">
+                        Haute: 
+                        <input type="radio" name="importance" data-js-radio ="haute">
+                    </label>
+                    <label class="rangee">
+                        Moyenne: 
+                        <input type="radio" name="importance" data-js-radio ="moyenne">
+                    </label>
+                    <label class="rangee">
+                        Basse: 
+                        <input type="radio" name="importance" data-js-radio ="basse">
+                    </label>
+                </div>
+            </form>
+            <button data-js-bouton="ajouter">Ajouter</button>
         </section>
 
         <!-- Section 2 -->
         <section class="boite">
-
-            <div data-js-control-wrapper>
-                <h2>Liste de tâches</h2>
-
+            <h2>Liste de tâches</h2>
+            <div data-js-control-wrapper="injection">
             </div>
 
-            <div data-js-control-wrapper class="rangee">
+            <div data-js-bouton="trier" class="rangee">
                 <button data-js-bouton="tri-alphabetique">Trier par ordre alphabétique</button>
                 <button data-js-bouton="tri-importance">Trier par importance</button>
             </div>
-
         </section>
 
         <!-- Section 3 -->
         <section class="boite">
-            <div data-js-control-wrapper>
-                <h2>Détail d'une tâche</h2>
-
+            <h2>Détail d'une tâche</h2>
+            <div data-js-control-wrapper="detail">
             </div>
         </section>
 

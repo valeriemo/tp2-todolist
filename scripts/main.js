@@ -1,15 +1,9 @@
 window.addEventListener('DOMContentLoaded', function () {
     
-    let elForm = document.querySelector('[data-js-form]');
+    let elsForm = document.querySelectorAll('[data-js-form]');
 
-
-
-    let oForm = new Form(elForm);
-
-
-
-
-
-
-
+    for (let i = 0, l = elsForm.length; i < l; i++) {
+        new Form(elsForm[i]);
+        new TrierTaches(elsForm[i]);
+    }
 })

@@ -5,25 +5,50 @@
 }
 body{
     margin: 60px;
+    background-color: #F4EDED;
+    color: #464D77;
+
 }
 label, textarea, input{
     display: block;
 }
 input{
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1.4px solid #36827F;
+    background-color: #F4EDED;
 }
 header{
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #36827F;
     margin-bottom: 40px;
     padding-bottom: 40px;
 }
 h2{
     margin-bottom: 30px;
     font-size: 20px;
+    background-color: #464D77;
+    color: #f9db6d;
+    padding: 10px;
+    max-width: fit-content;
+    border-radius: 4px;
 }
-
+button{
+    padding: 10px;
+    border: #464D77;
+    color: #36827F;
+    background-color: #F9DB6D;
+    border-radius: 20px;
+    font-weight: 800;
+    cursor: pointer;
+}
+small{
+    color: #36827F;
+    font-weight: 800;
+}
 /* Les classes*/
+.tache{
+    display: flex;
+    justify-content: space-between;
+}
 .rangee{
     display: flex;
     gap: 8px;
@@ -31,15 +56,14 @@ h2{
     max-width: 700px;
 }
 .boite{
-    border: 1px solid black;
+    border: 2px solid #36827F;
     padding: 25px;
     margin-bottom: 30px;
-
+    border-radius: 10px;
 }
-
 
 
 /* Les classes a injecter */
 .error{
-    color: red;
+    color: rgb(255, 85, 0);
 }

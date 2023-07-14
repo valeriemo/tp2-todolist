@@ -1,16 +1,14 @@
 class Form {
     constructor(el) {       //je vais aller chercher la form
         this._el = el;
-        this._elsInput = this._el.querySelectorAll('input');
-        this._elsRequired = this._el.querySelectorAll('div[required]')
-        this._elsRadios = this._el.querySelectorAll('input[type="radio"]'),
+        this._elForm = this._el.querySelector('form');
+        this._elInputDescription = this._elForm.description;
+        this._elInputTache = this._elForm.tache;
+        this._elWrapperInjection = this._el.querySelector('[data-js-control-wrapper="injection"]')
         this._elBtn = this._el.querySelector('[data-js-bouton]'),
-        this.validation = this.validation.bind(this);
 
-/*      console.log(this)
-        console.log(this._elsInput);
-        console.log(this._elsRequired);
-        console.log(this._elBtn) */
+        this.gereForm = this.gereForm.bind(this);
+
         this.init();
     }
 
@@ -19,74 +17,100 @@ class Form {
      * Initialise les comportements
      */
     init() {
-        this._elBtn.addEventListener('click', this.validation);
+        this._elBtn.addEventListener('click', this.gereForm);
     }
 
+
+
+
+
     /**
-     * Validation 
+     * Gestion des comportements du formulaire 
      */
-    validation() {
+    gereForm(e) {
+        e.preventDefault();   
+        // Appel la validation avant de débuter ses actions
+        if (this.valideForm()) {
+
+            let elementRadio = this._el.querySelector('input[name="importance"]:checked'),
+                valeurDataJsRadio = elementRadio.dataset.jsRadio,
+
+                tache = {
+                tache: this._elInputTache.value,
+                description: `${this._elInputDescription.value == '' ? "Aucune description disponible." : this._elInputDescription.value}`,
+                importance: valeurDataJsRadio
+            } 
+
+            aTaches.push(tache);
+
+            this._elForm.reset();
+
+            this.injecteTache(tache);
+        }
+    }
+    /**
+     * Injection de la tache dans la liste
+     * @param {Objet littéral} tache 
+     */
+    injecteTache(tache) {
+        let dom = `  
+                                <div class="tache" data-js-tache="${aTaches.length - 1}">
+                                    <div>
+                                        <small>Tâche : </small><span>${tache.tache}</span><small> - Importance : </small><span>${tache.importance}</span>  
+                                    </div>
+                                    <div data-js-bouton-wrapper>
+                                        <button data-js-bouton="detail">Afficher le détail</button>
+                                        <button data-js-bouton="supprimer">Supprimer</button>
+                                    </div>  
+                                </div>`;      
+        
+        this._elWrapperInjection.insertAdjacentHTML('beforeend', dom);
+        
+        new Tache(this._elWrapperInjection.lastElementChild, tache.tache, tache.importance, tache.description); 
+    }
+
+
+    /**
+     * Validation du formulaire
+     * Retourne un Booleen
+     */
+    valideForm() {
         let estValide = true,
-            elRadioWrapper = this._el.querySelector('[data-js-control-wrapper = radio]'),
-            estSelectionne = false;
+            elRadioWrapper = this._el.querySelector('[data-js-control-wrapper="radio"]'),
+            wrapperRequired = this._elInputTache.parentNode;
+
         /**
          * Validation des inputs required
          */
-        for (let i = 0, l = this._elsRequired.length; i < l; i++) {
-            let elInput = this._elsRequired[i].querySelector('input');
-        
-            if (elInput.value !== '') {
-                if (this._elsRequired[i].classList.contains('error')) {
-                    this._elsRequired[i].classList.remove('error')
-                } 
-            } else {
-                this._elsRequired[i].classList.add('error');
-                estValide = false;
-            }
-        }
-
-        /**
-         * Validation des radios (required)
-         */
-        for (let i = 0, l = this._elsRadios.length; i < l; i++) {
-            if (this._elsRadios[i].checked) {
-                    estSelectionne = true;
-                }
+        if (this._elInputTache.value !== '') {
+            if (wrapperRequired.classList.contains('error')) {
+                wrapperRequired.classList.remove('error')
             } 
-            if (estSelectionne) {
-                if (elRadioWrapper.classList.contains('error')) {
-                    elRadioWrapper.classList.remove('error');
-                }
-            } else {
-                elRadioWrapper.classList.add('error');
-                estValide = false;
+        } else {
+            wrapperRequired.classList.add('error');
+            estValide = false;
+        }
+        
+        /**
+         * Validation des radios 
+         */
+        let elImportanceChecked = this._el.querySelector('input[name="importance"]:checked');
+
+        if (elImportanceChecked) {
+            if (elRadioWrapper.classList.contains('error')) {
+                elRadioWrapper.classList.remove('error');
             }
-            // Reset quand valide
-            if (estValide) {
-                for (let i = 0, l = this._elsInput.length; i < l; i++) {
-                    this._elsInput[i].value = '';
-                }
-            }
-
-    } // fin validation()
-
-
-
-
-
+        } else {
+            elRadioWrapper.classList.add('error');
+            estValide = false;
+        }
+        return estValide;
     }
 
 
-// Gestion du formulaire Au clic du bouton :
+}
 
-// Validation de nom et importance
-// (si valide) Récupération des valeurs dans objet littéral tache
-// Nettoyer les champs
 
-// Injection des tâches
-// tache : nom /importance: /afficher le detail / supprimer
-
-// class tache
 
 
 
